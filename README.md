@@ -8,7 +8,7 @@ My personal portfolio: a digital scrapbook. It's plain HTML, CSS and JavaScript 
 - `styles.css`: colours, fonts and layout
 - `script.js`: the video list (order and titles) and the hover and click behaviour
 - `assets/videos/`: the TikTok videos
-- `assets/me.png`: portrait for the polaroid (add this file and it shows up automatically)
+- `assets/me.jpg`: portrait for the polaroid
 
 ## Updating the live site
 

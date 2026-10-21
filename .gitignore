@@ -1,0 +1,8 @@
+# Original source files (the site uses the copies in assets/)
+TikTok examples/
+Website vibe/
+
+# Local tooling
+.claude/
+.vercel/
+.DS_Store

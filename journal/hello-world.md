@@ -12,7 +12,7 @@ If you grew up in the Zoella era (imo peak YouTube), you’ll more than likely h
 
 I had been toying with the idea of a Substack-esque blog BUT with more than just blog entries. A spot for journalling, giving career advice, scrapbooking, sharing some of my builds and highlighting my work… Essentially a dumping ground for my thoughts with a sprinkle of my CV.
 
-Well LOW AND BEHOLD - I built a website. With help from Vercel, GitHub, good ol’ Claude Code and Notion, I put together a little workflow that allows me to maintain a little corner on the internet. 
+Well LOW AND BEHOLD - I built a website. With help from Vercel, GitHub, good ol’ Claude Code and Notion, I put together a workflow that allows me to maintain a little corner on the internet. 
 
 Not too sure what I’ll make of this yet BUT you can expect:
 

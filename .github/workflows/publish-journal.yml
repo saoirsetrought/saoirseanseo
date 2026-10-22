@@ -37,6 +37,11 @@ jobs:
         if: steps.clock.outputs.run == 'true'
         with:
           node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        if: steps.clock.outputs.run == 'true'
+        run: npm ci
 
       - name: Turn Notion entries into journal posts
         if: steps.clock.outputs.run == 'true'
@@ -65,3 +70,11 @@ jobs:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN_JOURNAL }}
           NOTION_DATABASE_ID: 3c4dff78e8d580af8711c1805953a01b
         run: node scripts/publish-from-notion.mjs --mark-done
+
+      - name: Fail if any entry couldn't be published
+        if: steps.clock.outputs.run == 'true'
+        run: |
+          if [ -f .notion-skipped.json ]; then
+            echo "Some entries couldn't be published and are still set to 'Push to blog'. See the step above for why."
+            exit 1
+          fi

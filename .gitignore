@@ -13,3 +13,4 @@ _site/
 
 # Scratch file used by the Notion publishing workflow
 .notion-published.json
+.notion-skipped.json

@@ -4,16 +4,18 @@
 //   node scripts/publish-from-notion.mjs --mark-done  set those entries to "Done" in Notion (run after pushing)
 //
 // Needs NOTION_TOKEN (an internal integration key with access to the database) and NOTION_DATABASE_ID.
-// Uses only Node's built-in fetch, so there is nothing to install.
+// Run `npm ci` first: images are cleaned with the sharp library.
 
 import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import sharp from "sharp";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const POSTS_DIR = path.join(ROOT, "journal");
 const IMAGES_DIR = path.join(ROOT, "assets", "journal");
 const PUBLISHED_LIST = path.join(ROOT, ".notion-published.json");
+const SKIPPED_LIST = path.join(ROOT, ".notion-skipped.json");
 
 const STATUS_PROPERTY = "Status";
 const READY_STATUS = "Push to blog";
@@ -242,14 +244,26 @@ function pickSlug(base, names) {
   return slug;
 }
 
+// Re-encode an image so it carries no hidden metadata (phone photos often include the GPS
+// location they were taken at). Photos are turned upright and capped at 1600px wide.
+export async function cleanImage(buffer) {
+  const { format } = await sharp(buffer).metadata();
+  if (format === "gif") {
+    return { data: await sharp(buffer, { animated: true }).gif().toBuffer(), ext: "gif" };
+  }
+  const img = sharp(buffer).rotate().resize({ width: 1600, withoutEnlargement: true });
+  if (format === "png" || format === "svg") return { data: await img.png().toBuffer(), ext: "png" };
+  if (format === "webp") return { data: await img.webp({ quality: 85 }).toBuffer(), ext: "webp" };
+  return { data: await img.jpeg({ quality: 85, mozjpeg: true }).toBuffer(), ext: "jpg" };
+}
+
 async function downloadImage(url, dir, n) {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Image download failed (${res.status})`);
-  const type = res.headers.get("content-type") || "";
-  const ext = { "image/png": "png", "image/gif": "gif", "image/webp": "webp", "image/svg+xml": "svg" }[type.split(";")[0]] || "jpg";
+  const { data, ext } = await cleanImage(Buffer.from(await res.arrayBuffer()));
   await mkdir(dir, { recursive: true });
   const name = `image-${n}.${ext}`;
-  await writeFile(path.join(dir, name), Buffer.from(await res.arrayBuffer()));
+  await writeFile(path.join(dir, name), data);
   return name;
 }
 
@@ -300,6 +314,7 @@ async function main() {
   console.log(`${pages.length} entr${pages.length === 1 ? "y" : "ies"} set to "${READY_STATUS}"`);
   const existing = await existingPosts();
   const published = [];
+  const skipped = [];
   for (const page of pages) {
     try {
       const { slug, title } = await publishEntry(page, existing);
@@ -308,9 +323,13 @@ async function main() {
     } catch (err) {
       // Leave this entry as "Push to blog" so it's retried next time
       console.error(`✗ Skipped ${page.id}: ${err.message}`);
+      skipped.push(page.id);
     }
   }
   await writeFile(PUBLISHED_LIST, JSON.stringify(published));
+  // The workflow checks this at the end and fails (which emails you) if anything was skipped
+  if (skipped.length) await writeFile(SKIPPED_LIST, JSON.stringify(skipped));
+  else await rm(SKIPPED_LIST, { force: true });
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

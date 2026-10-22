@@ -15,7 +15,7 @@ ogType: article
           <h1 class="post__title hand">{{ title }}</h1>
           {% if topics %}
           <ul class="post-card__topics">
-            {% for t in topics %}<li>#{{ t }}</li>{% endfor %}
+            {% for t in topics %}<li>{{ t }}</li>{% endfor %}
           </ul>
           {% endif %}
         </header>

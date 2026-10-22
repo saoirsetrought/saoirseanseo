@@ -24,7 +24,7 @@
         {% if post.data.teaser %}<p class="post-card__teaser">{{ post.data.teaser }}</p>{% endif %}
         {% if post.data.topics %}
         <ul class="post-card__topics">
-          {% for t in post.data.topics %}<li>#{{ t }}</li>{% endfor %}
+          {% for t in post.data.topics %}<li>{{ t }}</li>{% endfor %}
         </ul>
         {% endif %}
         <span class="post-card__more hand">read &rarr;</span>

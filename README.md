@@ -49,7 +49,7 @@ Write entries in the Notion **blog entries** database (under HQ → journal). Ev
 To publish straight away: GitHub → **Actions** → **Publish journal from Notion** → **Run workflow**.
 To update a published post: edit it in Notion and set it back to **Push to blog**. It replaces the old version instead of making a copy.
 
-The workflow is `.github/workflows/publish-journal.yml` and the converter is `scripts/publish-from-notion.mjs`. It needs a GitHub secret called `NOTION_TOKEN`, holding a Notion internal integration key that has access to the database.
+The workflow is `.github/workflows/publish-journal.yml` and the converter is `scripts/publish-from-notion.mjs`. It needs a GitHub secret called `NOTION_TOKEN_JOURNAL`, holding a Notion internal integration key that has access to the database.
 
 ## Updating the live site
 

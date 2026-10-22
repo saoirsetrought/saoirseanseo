@@ -41,7 +41,7 @@ jobs:
       - name: Turn Notion entries into journal posts
         if: steps.clock.outputs.run == 'true'
         env:
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN_JOURNAL }}
           NOTION_DATABASE_ID: 3c4dff78e8d580af8711c1805953a01b
         run: node scripts/publish-from-notion.mjs
 
@@ -62,6 +62,6 @@ jobs:
       - name: Mark entries as Done in Notion
         if: steps.clock.outputs.run == 'true'
         env:
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN_JOURNAL }}
           NOTION_DATABASE_ID: 3c4dff78e8d580af8711c1805953a01b
         run: node scripts/publish-from-notion.mjs --mark-done

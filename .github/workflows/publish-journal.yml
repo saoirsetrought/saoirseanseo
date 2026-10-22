@@ -1,0 +1,67 @@
+# Publishes Notion "blog entries" set to "Push to blog" every day at 6pm Irish time.
+# You can also run it any time from GitHub: Actions -> Publish journal from Notion -> Run workflow.
+name: Publish journal from Notion
+
+on:
+  schedule:
+    # GitHub schedules use UTC. 6pm in Dublin is 17:00 UTC in summer and 18:00 UTC in winter,
+    # so run at both and let the first step skip whichever isn't 6pm in Dublin.
+    - cron: "0 17 * * *"
+    - cron: "0 18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-journal
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check it's 6pm in Dublin
+        id: clock
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$(TZ=Europe/Dublin date +%H)" != "18" ]; then
+            echo "Not 6pm in Dublin, skipping."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.clock.outputs.run == 'true'
+
+      - uses: actions/setup-node@v4
+        if: steps.clock.outputs.run == 'true'
+        with:
+          node-version: 22
+
+      - name: Turn Notion entries into journal posts
+        if: steps.clock.outputs.run == 'true'
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: 3c4dff78e8d580af8711c1805953a01b
+        run: node scripts/publish-from-notion.mjs
+
+      - name: Commit and push new posts
+        if: steps.clock.outputs.run == 'true'
+        run: |
+          git add journal assets/journal 2>/dev/null || git add journal
+          if git diff --cached --quiet; then
+            echo "Nothing new to publish."
+          else
+            git config user.name "journal-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Publish journal entries from Notion"
+            git push
+          fi
+
+      # Runs once the posts are safely on GitHub (or were already identical there)
+      - name: Mark entries as Done in Notion
+        if: steps.clock.outputs.run == 'true'
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: 3c4dff78e8d580af8711c1805953a01b
+        run: node scripts/publish-from-notion.mjs --mark-done

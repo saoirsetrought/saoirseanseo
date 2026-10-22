@@ -10,3 +10,6 @@ Website vibe/
 # Build output and dependencies
 node_modules/
 _site/
+
+# Scratch file used by the Notion publishing workflow
+.notion-published.json

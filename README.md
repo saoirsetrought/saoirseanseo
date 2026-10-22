@@ -36,6 +36,21 @@ Write the post here. Leave a blank line between paragraphs.
 
 Posts are sorted newest first by `date`. Any `topics` you use automatically become filter buttons on the journal board.
 
+## Publishing from Notion
+
+Write entries in the Notion **blog entries** database (under HQ → journal). Every day at 6pm Irish time, a GitHub workflow publishes each entry whose **Status** is **Push to blog**, then sets it to **Done**:
+
+- `theme` → the post title
+- `date` → the post date (the date it was created, if blank)
+- `teaser` → the line on the card (the first sentence, if blank)
+- `topics` → the tags and filter buttons
+- the page itself → the post. Headings, lists, quotes, callouts, code, tables, toggles, links and images all come across. Images are saved to `assets/journal/`.
+
+To publish straight away: GitHub → **Actions** → **Publish journal from Notion** → **Run workflow**.
+To update a published post: edit it in Notion and set it back to **Push to blog**. It replaces the old version instead of making a copy.
+
+The workflow is `.github/workflows/publish-journal.yml` and the converter is `scripts/publish-from-notion.mjs`. It needs a GitHub secret called `NOTION_TOKEN`, holding a Notion internal integration key that has access to the database.
+
 ## Updating the live site
 
 Commit and push to GitHub, and Vercel rebuilds within a minute:

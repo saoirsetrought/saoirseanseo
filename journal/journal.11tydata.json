@@ -1,8 +1,0 @@
-{
-  "layout": "post.njk",
-  "permalink": "/journal/{{ page.fileSlug }}/",
-  "eleventyComputed": {
-    "description": "{{ teaser or title }}",
-    "docTitle": "{{ title }} ✿ Saoirse's journal"
-  }
-}

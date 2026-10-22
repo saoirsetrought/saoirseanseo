@@ -1,49 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Saoirse anseo ✿ Saoirse Trought</title>
-<meta name="description" content="A digital scrapbook of Saoirse Trought: the serious stuff, the fun stuff, and the videos in between.">
-<link rel="canonical" href="https://saoirseanseo.com/">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://saoirseanseo.com/">
-<meta property="og:title" content="Saoirse an seo ✿ Saoirse Trought">
-<meta property="og:description" content="A digital scrapbook: the serious stuff, the fun stuff, and the videos in between.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'><path fill='%23f26b8a' d='M2 3h4v1h1v1h2V4h1V3h4v1h1v5h-1v1h-1v1h-1v1h-1v1H9v1H7v-1H6v-1H5v-1H4v-1H3V9H2V8H1V4h1z'/></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=4">
-</head>
-<body>
-
-<!-- Pixel icon sprites, reused with <use href="#..."> -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <symbol id="i-heart" viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="currentColor" d="M2 3h4v1h1v1h2V4h1V3h4v1h1v5h-1v1h-1v1h-1v1h-1v1H9v1H7v-1H6v-1H5v-1H4v-1H3V9H2V8H1V4h1z"/></symbol>
-    <symbol id="i-star" viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="currentColor" d="M7 1h2v4h1v1h1v1h4v2h-4v1h-1v1H9v4H7v-4H6v-1H5V9H1V7h4V6h1V5h1z"/></symbol>
-    <symbol id="i-mail" viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="currentColor" d="M1 3h14v10H1zm1 1v1h1v1h1v1h1v1h1v1h4V8h1V7h1V6h1V5h1V4zm0 3v5h12V7h-1v1h-1v1h-1v1H6V9H5V8H4V7z"/></symbol>
-    <symbol id="i-note" viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="currentColor" d="M6 1h8v10h-1v1h-3v-1H9V9h1V8h2V4H8v8H7v1H4v-1H3v-2h1V9h2z"/></symbol>
-    <symbol id="i-play" viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="currentColor" d="M4 2h2v1h2v1h2v1h2v1h2v4h-2v1h-2v1H8v1H6v1H4z"/></symbol>
-    <symbol id="i-sound" viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="currentColor" d="M1 5h3V4h1V3h1V2h2v12H6v-1H5v-1H4v-1H1zm10 0h1v1h1v4h-1v1h-1zm2-3h1v1h1v10h-1v1h-1v-2h1V4h-1z"/></symbol>
-    <symbol id="i-mute" viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="currentColor" d="M1 5h3V4h1V3h1V2h2v12H6v-1H5v-1H4v-1H1zm9 0h1v1h1v1h1V6h1V5h1v1h-1v1h-1v2h1v1h1v1h-1v-1h-1V9h-1v1h-1v1h-1v-1h1V9h1V7h-1V6h-1z"/></symbol>
-  </defs>
-</svg>
-
-<header class="topbar">
-  <a class="topbar__logo" href="#top" aria-label="Back to top"><svg><use href="#i-heart"/></svg> saoirse.exe</a>
-  <nav class="topbar__nav" aria-label="Sections">
-    <a href="#who">About</a>
-    <a href="#serious">"Serious"</a>
-    <a href="#fun">Fun!</a>
-    <a href="#work">Videos</a>
-  </nav>
-  <a class="btn btn--small" href="mailto:saoirseanseo@gmail.com"><svg><use href="#i-mail"/></svg> Email me</a>
-</header>
-
-<main id="top">
-
+---
+title: "Saoirse anseo ✿ Saoirse Trought"
+description: "A digital scrapbook of Saoirse Trought: the serious stuff, the fun stuff, the videos in between, and a journal."
+permalink: /
+layout: base.njk
+---
   <!-- ============ HERO ============ -->
   <section class="hero">
     <div class="page">
@@ -58,7 +18,7 @@
       <p class="hero__lede">Part CV, part scrapbook. A little glimpse into what I do, what I make, and what I love. <svg class="ico ico--pink"><use href="#i-heart"/></svg></p>
       <div class="hero__ctas">
         <a class="btn" href="mailto:saoirseanseo@gmail.com"><svg><use href="#i-mail"/></svg> Email me</a>
-        <a class="btn btn--ghost" href="#work"><svg><use href="#i-play"/></svg> See my work</a>
+        <a class="btn btn--ghost" href="/#work"><svg><use href="#i-play"/></svg> See my work</a>
       </div>
     </div>
     <svg class="doodle doodle--star1"><use href="#i-star"/></svg>
@@ -67,6 +27,17 @@
     <svg class="doodle doodle--star2"><use href="#i-star"/></svg>
   </section>
 
+  <!-- ============ PORTFOLIO / JOURNAL SWITCH ============ -->
+  <div class="viewswitch page">
+    <div class="switch" role="tablist" aria-label="Choose what to see">
+      <span class="switch__knob" aria-hidden="true"></span>
+      <button class="switch__opt" type="button" role="tab" id="tab-portfolio" aria-controls="view-portfolio" aria-selected="true" data-view="portfolio"><svg><use href="#i-heart"/></svg> Portfolio</button>
+      <button class="switch__opt" type="button" role="tab" id="tab-journal" aria-controls="view-journal" aria-selected="false" data-view="journal" tabindex="-1"><svg><use href="#i-note"/></svg> Journal</button>
+    </div>
+    <p class="hand viewswitch__hint" aria-hidden="true">&#8598; psst, I write too</p>
+  </div>
+
+  <div class="view" id="view-portfolio" role="tabpanel" aria-labelledby="tab-portfolio">
   <!-- ============ WHO IS SAOIRSE ============ -->
   <section class="section" id="who">
     <div class="page">
@@ -76,7 +47,7 @@
         <figure class="polaroid polaroid--tilt-l">
           <span class="tape tape--blue"></span>
           <!-- Portrait: assets/me.jpg (swap the file to change it; the placeholder shows if it is missing) -->
-          <img class="polaroid__img" src="assets/me.jpg?v=2" alt="Saoirse standing in front of a whitewashed church with a blue dome in Greece" onerror="this.outerHTML='&lt;div class=&quot;polaroid__img placeholder&quot;&gt;portrait coming soon&lt;/div&gt;'">
+          <img class="polaroid__img" src="/assets/me.jpg?v=2" alt="Saoirse standing in front of a whitewashed church with a blue dome in Greece" onerror="this.outerHTML='&lt;div class=&quot;polaroid__img placeholder&quot;&gt;portrait coming soon&lt;/div&gt;'">
           <figcaption class="hand">On holibobs!</figcaption>
         </figure>
 
@@ -207,32 +178,12 @@
     <div class="reel" id="reel"></div>
   </section>
 
-  <!-- ============ CONTACT ============ -->
-  <section class="contact">
-    <div class="page">
-      <div class="window contact__win">
-        <div class="window__bar window__bar--orange"><span>new_message.eml</span><i></i></div>
-        <div class="window__body contact__body">
-          <svg class="contact__mail"><use href="#i-mail"/></svg>
-          <h2>Let&rsquo;s build together</h2>
-          <p>Brand collab, a project or just a hello: my inbox is open.</p>
-          <a class="btn btn--big" href="mailto:saoirseanseo@gmail.com"><svg><use href="#i-mail"/></svg> Email me</a>
-          <p class="contact__addr pixel">saoirseanseo@gmail.com</p>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
+  </div>
 
-<footer class="footer">
-  <p class="pixel">&copy; <span id="year"></span> saoirseanseo.com</p>
-  <p>
-    <a href="https://www.tiktok.com/@saoirseanseo" target="_blank" rel="noopener">TikTok</a> &middot;
-    <a href="https://www.linkedin.com/in/saoirsetrought" target="_blank" rel="noopener">LinkedIn</a> &middot;
-    <a href="mailto:saoirseanseo@gmail.com">Email</a>
-  </p>
-  <p class="hand">made with <svg class="ico ico--pink"><use href="#i-heart"/></svg> &amp; tea</p>
-</footer>
+  <!-- ============ JOURNAL ============ -->
+  <div class="view" id="view-journal" role="tabpanel" aria-labelledby="tab-journal" hidden>
+    {% include "journal-board.njk" %}
+  </div>
 
 <!-- Video lightbox -->
 <div class="lightbox" id="lightbox" hidden>
@@ -242,6 +193,3 @@
   </div>
 </div>
 
-<script src="script.js?v=3"></script>
-</body>
-</html>

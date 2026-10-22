@@ -1,0 +1,31 @@
+---
+layout: base.njk
+view: journal
+ogType: article
+---
+<article class="section post">
+  <div class="page page--narrow">
+    <a class="post__back hand" href="/#journal">&larr; back to the journal</a>
+
+    <div class="window post__win">
+      <div class="window__bar window__bar--blue"><span>{{ page.fileSlug }}.txt</span><i></i></div>
+      <div class="window__body post__body">
+        <header class="post__head">
+          <time class="post__date pixel" datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>
+          <h1 class="post__title hand">{{ title }}</h1>
+          {% if topics %}
+          <ul class="post-card__topics">
+            {% for t in topics %}<li>#{{ t }}</li>{% endfor %}
+          </ul>
+          {% endif %}
+        </header>
+        <div class="prose">
+          {{ content | safe }}
+        </div>
+        <p class="post__sign hand">&mdash; Saoirse <svg class="ico ico--pink"><use href="#i-heart"/></svg></p>
+      </div>
+    </div>
+
+    <a class="post__back hand" href="/#journal">&larr; back to the journal</a>
+  </div>
+</article>

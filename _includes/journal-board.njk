@@ -1,0 +1,37 @@
+<section class="section" id="journal">
+  <div class="page">
+    <h2 class="section__title"><span class="tab tab--blue">&#9998;</span> The Journal</h2>
+    <p class="section__sub hand">thoughts, notes &amp; things I&rsquo;m figuring out</p>
+
+    {% set topics = collections.posts | allTopics %}
+    {% if topics.length %}
+    <div class="topic-filter" role="group" aria-label="Filter posts by topic">
+      <button class="chip chip--btn is-active" type="button" data-topic="all" aria-pressed="true">all</button>
+      {% for t in topics %}
+      <button class="chip chip--btn" type="button" data-topic="{{ t }}" aria-pressed="false">{{ t }}</button>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% set colors = ["yellow", "pink", "mint", "blue", "orange", "cream"] %}
+    {% set tapes = ["", "tape--blue", "tape--pink"] %}
+    <div class="post-board">
+      {% for post in collections.posts %}
+      <a class="post-card note note--{{ colors[loop.index0 % 6] }}" href="{{ post.url }}" data-topics="{{ (post.data.topics or []) | join(' ') }}">
+        <span class="tape {{ tapes[loop.index0 % 3] }}"></span>
+        <time class="post-card__date pixel" datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
+        <h3 class="post-card__title">{{ post.data.title }}</h3>
+        {% if post.data.teaser %}<p class="post-card__teaser">{{ post.data.teaser }}</p>{% endif %}
+        {% if post.data.topics %}
+        <ul class="post-card__topics">
+          {% for t in post.data.topics %}<li>#{{ t }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+        <span class="post-card__more hand">read &rarr;</span>
+      </a>
+      {% else %}
+      <p class="hand post-board__empty">nothing here yet&hellip; the first page is still blank &#9998;</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>

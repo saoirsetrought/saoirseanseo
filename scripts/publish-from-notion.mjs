@@ -199,9 +199,10 @@ export function slugify(s) {
 }
 
 export function firstSentence(markdown) {
+  // Skip headings, lists, quotes etc. and very short openers like "Hi!" so the teaser says something
   const para = markdown
     .split("\n\n")
-    .find((p) => /^[^#>\-|!`<\d]/.test(p.trim()));
+    .find((p) => /^[^#>\-|!`<\d]/.test(p.trim()) && p.trim().length >= 40);
   if (!para) return "";
   const plain = para.replace(/[*_~`\\]/g, "").replace(/\[([^\]]*)\]\([^)]*\)/g, "$1").replace(/\s+/g, " ").trim();
   const sentence = plain.match(/^.*?[.!?](\s|$)/)?.[0].trim() || plain;

@@ -399,7 +399,8 @@ h1, h2, h3 { margin: 0; line-height: 1.1; }
 .switch__opt:focus-visible { outline: 3px dashed var(--ink); outline-offset: 4px; }
 .viewswitch__hint {
   margin: 0; font-size: 1.35rem; color: var(--ink-soft);
-  transform: translateX(6.5rem) rotate(-3deg);
+  /* Start the hint just right of centre so its ↖ arrow sits under the Portfolio button */
+  transform: translateX(calc(50% + 4.5rem)) rotate(-3deg);
   transition: opacity .25s;
 }
 body[data-view="portfolio"] .viewswitch__hint { opacity: 0; }
@@ -510,7 +511,7 @@ body[data-view="portfolio"] .viewswitch__hint { opacity: 0; }
 @media (max-width: 700px) {
   .viewswitch { margin-top: -1.5rem; }
   .switch__opt { min-width: 0; padding: .65em 1em; font-size: .8rem; }
-  .viewswitch__hint { transform: translateX(3.5rem) rotate(-3deg); font-size: 1.2rem; }
+  .viewswitch__hint { max-width: 7em; line-height: 1.1; transform: translateX(calc(50% + 3rem)) rotate(-3deg); font-size: 1.2rem; }
   .post-board { grid-template-columns: 1fr; }
   .post-card { min-height: 0; }
   .post__body { --margin-line: 1.25rem; }

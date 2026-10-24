@@ -3,6 +3,7 @@ title: "Saoirse anseo ✿ Saoirse Trought"
 description: "A digital scrapbook of Saoirse Trought: the serious stuff, the fun stuff, the videos in between, and a journal."
 permalink: /
 layout: base.njk
+view: journal
 ---
   <!-- ============ HERO ============ -->
   <section class="hero">
@@ -31,13 +32,13 @@ layout: base.njk
   <div class="viewswitch page">
     <div class="switch" role="tablist" aria-label="Choose what to see">
       <span class="switch__knob" aria-hidden="true"></span>
-      <button class="switch__opt" type="button" role="tab" id="tab-portfolio" aria-controls="view-portfolio" aria-selected="true" data-view="portfolio"><svg><use href="#i-heart"/></svg> Portfolio</button>
-      <button class="switch__opt" type="button" role="tab" id="tab-journal" aria-controls="view-journal" aria-selected="false" data-view="journal" tabindex="-1"><svg><use href="#i-note"/></svg> Journal</button>
+      <button class="switch__opt" type="button" role="tab" id="tab-journal" aria-controls="view-journal" aria-selected="true" data-view="journal"><svg><use href="#i-note"/></svg> Journal</button>
+      <button class="switch__opt" type="button" role="tab" id="tab-portfolio" aria-controls="view-portfolio" aria-selected="false" data-view="portfolio" tabindex="-1"><svg><use href="#i-heart"/></svg> Portfolio</button>
     </div>
-    <p class="hand viewswitch__hint" aria-hidden="true">&#8598; psst, I write too</p>
+    <p class="hand viewswitch__hint" aria-hidden="true">&#8598; psst, there&rsquo;s a CV too</p>
   </div>
 
-  <div class="view" id="view-portfolio" role="tabpanel" aria-labelledby="tab-portfolio">
+  <div class="view" id="view-portfolio" role="tabpanel" aria-labelledby="tab-portfolio" hidden>
   <!-- ============ WHO IS SAOIRSE ============ -->
   <section class="section" id="who">
     <div class="page">
@@ -181,7 +182,7 @@ layout: base.njk
   </div>
 
   <!-- ============ JOURNAL ============ -->
-  <div class="view" id="view-journal" role="tabpanel" aria-labelledby="tab-journal" hidden>
+  <div class="view" id="view-journal" role="tabpanel" aria-labelledby="tab-journal">
     {% include "journal-board.njk" %}
   </div>
 

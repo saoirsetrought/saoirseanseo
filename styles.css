@@ -381,11 +381,11 @@ h1, h2, h3 { margin: 0; line-height: 1.1; }
 .switch__knob {
   position: absolute; top: 5px; bottom: 5px; left: 5px;
   width: calc(50% - 5px);
-  background: var(--pink);
+  background: var(--blue);
   border: 2px solid var(--ink); border-radius: 999px;
   transition: transform .35s cubic-bezier(.5, 1.5, .45, 1), background-color .3s;
 }
-.switch[data-active="journal"] .switch__knob { transform: translateX(100%); background: var(--blue); }
+.switch[data-active="portfolio"] .switch__knob { transform: translateX(100%); background: var(--pink); }
 .switch__opt {
   position: relative; z-index: 1;
   display: flex; align-items: center; justify-content: center; gap: .5em;
@@ -402,7 +402,7 @@ h1, h2, h3 { margin: 0; line-height: 1.1; }
   transform: translateX(6.5rem) rotate(-3deg);
   transition: opacity .25s;
 }
-body[data-view="journal"] .viewswitch__hint { opacity: 0; }
+body[data-view="portfolio"] .viewswitch__hint { opacity: 0; }
 .view:not([hidden]) { animation: view-in .4s ease-out; }
 @keyframes view-in { from { opacity: 0; transform: translateY(14px); } }
 

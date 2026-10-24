@@ -94,7 +94,7 @@ function closeLightbox() {
 const switchEl = document.querySelector(".switch");
 
 if (switchEl) {
-  const VIEWS = ["portfolio", "journal"];
+  const VIEWS = ["journal", "portfolio"];
   const PORTFOLIO_SECTIONS = ["who", "serious", "fun", "work"];
   const tab = (name) => document.getElementById(`tab-${name}`);
   const panel = (name) => document.getElementById(`view-${name}`);
@@ -114,18 +114,23 @@ if (switchEl) {
     if (name !== "portfolio") reel.querySelectorAll("video").forEach((v) => v.pause());
   }
 
-  // Show the right view for the URL hash (#journal, #who, ...) and scroll to it
+  // Show the right view for the URL hash (#portfolio, #journal, #who, ...) and scroll to it.
+  // With no hash, the journal is shown first.
   function route(smooth) {
     const id = location.hash.slice(1);
     const behavior = smooth ? scrollBehavior : "auto";
+    const scrollToSwitch = () => document.querySelector(".viewswitch").scrollIntoView({ behavior, block: "start" });
     if (id === "journal") {
       setView("journal");
-      document.querySelector(".viewswitch").scrollIntoView({ behavior, block: "start" });
+      scrollToSwitch();
+    } else if (id === "portfolio") {
+      setView("portfolio");
+      scrollToSwitch();
     } else if (PORTFOLIO_SECTIONS.includes(id)) {
       setView("portfolio");
       document.getElementById(id).scrollIntoView({ behavior, block: "start" });
     } else {
-      setView("portfolio");
+      setView("journal");
     }
   }
 
@@ -133,13 +138,13 @@ if (switchEl) {
   for (const v of VIEWS) {
     tab(v).addEventListener("click", () => {
       setView(v);
-      history.replaceState(null, "", v === "journal" ? "#journal" : location.pathname);
+      history.replaceState(null, "", v === "portfolio" ? "#portfolio" : location.pathname);
     });
   }
   // Arrow keys move between the two options
   switchEl.addEventListener("keydown", (e) => {
     if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
-    const next = switchEl.dataset.active === "portfolio" ? "journal" : "portfolio";
+    const next = switchEl.dataset.active === "journal" ? "portfolio" : "journal";
     tab(next).click();
     tab(next).focus();
   });

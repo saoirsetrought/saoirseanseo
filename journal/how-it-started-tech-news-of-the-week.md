@@ -1,7 +1,7 @@
 ---
 title: "How it started: Tech News of the Week"
 date: 2026-10-25
-teaser: "The birth of the greatest day of the week"
+teaser: "The birth of the greatest day of the week."
 topics: ["tech"]
 notion_id: "403dff78-e8d5-80cc-b902-c2668fa62cb1"
 ---
